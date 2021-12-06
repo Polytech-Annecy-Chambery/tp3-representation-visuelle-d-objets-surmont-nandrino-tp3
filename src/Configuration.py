@@ -42,6 +42,7 @@ class Configuration:
 
         # Initializes the tranformation matrix
         self.initializeTransformationMatrix()
+        gl.glRotatef(-90,1,0,0)
              
         # Initializes the object list
         self.objects = []    
@@ -138,22 +139,32 @@ class Configuration:
     def processKeyDownEvent(self):
         # Rotates around the z-axis                       
         if self.event.dict['unicode'] == 'Z' or (self.event.mod & pygame.KMOD_SHIFT and self.event.key == pygame.K_z):
-            gl.glRotate(-2.5, 0, 0, 1)                     
+            gl.glRotate(-20, 0, 0, 1)                     
         elif self.event.dict['unicode'] == 'z' or self.event.key == pygame.K_z:
-            gl.glRotate(2.5, 0, 0, 1) 
+            gl.glRotate(20, 0, 0, 1) 
         
         # Draws or suppresses the reference frame
         elif self.event.dict['unicode'] == 'a' or self.event.key == pygame.K_a:
             self.parameters['axes'] = not self.parameters['axes']
             pygame.time.wait(300)
-    
+            
+        elif self.event.dict['unicode'] == 'Page up' or self.event.key == pygame.K_PAGEUP:
+            gl.glScalef(1.1,1.1,1.1)
+            
+        elif self.event.dict['unicode'] == 'Page down' or self.event.key == pygame.K_PAGEDOWN:
+            gl.glScalef(1/1.1, 1/1.1, 1/1.1)
+            
     # Processes the MOUSEBUTTONDOWN event
     def processMouseButtonDownEvent(self):
-        pass
-    
+        if self.event.button==4:
+            gl.glScalef(1.1, 1.1, 1.1)
+        elif self.event.button == 5:
+            gl.glScalef(1/1.1, 1/1.1, 1/1.1)
+        
     # Processes the MOUSEMOTION event
     def processMouseMotionEvent(self):
-        pass
+        if pygame.mouse.get_pressed()[0]==1:
+            gl.glRotatef(self.event.)
          
     # Displays on screen and processes events    
     def display(self): 
