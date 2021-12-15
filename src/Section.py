@@ -53,11 +53,24 @@ class Section:
     # Defines the vertices and faces 
     def generate(self):
         self.vertices = [ 
-                # Définir ici les sommets
+                [0, 0, 0 ], #0
+                [0, 0, self.parameters['height']], #1
+                [self.parameters['width'], 0, self.parameters['height']], #2
+                [self.parameters['width'], 0, 0],      #3
+				[0,self.parameters['thickness'],0],    #4
+                [0,self.parameters['thickness'],self.parameters['height']], #5
+                [self.parameters['width'],self.parameters['thickness'],self.parameters['height']],  #6
+                [self.parameters['width'],self.parameters['thickness'],0] #7
                 ]
         self.faces = [
-                # définir ici les faces
-                ]   
+                [0,3,2,1],
+                [4,7,6,5],
+                [3,7,6,2],
+                [0,4,5,1],
+                [0,3,7,4],
+                [1,2,6,5],
+                
+                ]  
 
     # Checks if the opening can be created for the object x
     def canCreateOpening(self, x):
@@ -71,11 +84,36 @@ class Section:
         
     # Draws the edges
     def drawEdges(self):
-        # A compléter en remplaçant pass par votre code
-        pass           
+        gl.glPushMatrix()
+        gl.glTranslatef(self.parameters['position'][0],self.parameters['position'][1],self.parameters['position'][2])
+        gl.glRotate(self.parameters['orientation'],0,0,1)
+        gl.glPolygonMode(gl.GL_FRONT_AND_BACK,gl.GL_LINE)    
+        for x in self.faces:
+            gl.glBegin(gl.GL_QUADS)
+            gl.glColor3fv([0, 0, 0])
+            gl.glVertex3fv(self.vertices[x[0]]) 
+            gl.glVertex3fv(self.vertices[x[1]]) 
+            gl.glVertex3fv(self.vertices[x[2]]) 
+            gl.glVertex3fv(self.vertices[x[3]]) 
+            gl.glEnd()
+        gl.glPopMatrix() #permet de restaurer les coordonnées du système précédent         
                     
     # Draws the faces
     def draw(self):
-        # A compléter en remplaçant pass par votre code
-        pass
+        if self.parameters['edges']: #si le paramètre "edges" prend la valeur "true" alors le dessin des faces peut avoir lieu
+            self.drawEdges()
+            
+        gl.glPushMatrix()
+        gl.glTranslatef(self.parameters['position'][0],self.parameters['position'][1],self.parameters['position'][2])
+        gl.glRotate(self.parameters['orientation'],0,0,1)
+        gl.glPolygonMode(gl.GL_FRONT_AND_BACK,gl.GL_FILL)
+        for x in self.faces: 
+            gl.glBegin(gl.GL_QUADS) 
+            gl.glColor3fv([0.5, 0.5, 0.5]) 
+            gl.glVertex3fv(self.vertices[x[0]])
+            gl.glVertex3fv(self.vertices[x[1]])
+            gl.glVertex3fv(self.vertices[x[2]])
+            gl.glVertex3fv(self.vertices[x[3]])
+            gl.glEnd()
+        gl.glPopMatrix() 
   

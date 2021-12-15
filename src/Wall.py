@@ -42,7 +42,8 @@ class Wall:
                                       'height': self.parameters['height'], \
                                       'thickness': self.parameters['thickness'], \
                                       'color': self.parameters['color'],
-                                      'position': self.parameters['position']})
+                                      'position': self.parameters['position'],
+                                      'orientation':self.parameters['orientation']})
         self.objects.append(self.parentSection) 
         
     # Getter
@@ -63,11 +64,13 @@ class Wall:
     
     # Adds an object    
     def add(self, x):    
-        # A compléter en remplaçant pass par votre code
-        pass        
-                    
+        self.objects.append(x)
+        return self
+            
+    
     # Draws the faces
     def draw(self):
-        # A compléter en remplaçant pass par votre code
-        pass
+        for obj in self.objects:
+            obj.draw()
+            obj.drawEdges()
   
