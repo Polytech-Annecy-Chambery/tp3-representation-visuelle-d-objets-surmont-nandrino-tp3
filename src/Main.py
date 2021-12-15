@@ -97,18 +97,18 @@ def Q6():
 def main():
     # Enlever un des commentaires pour la question traitée
     
-    #configuration = Q1a()
-    #configuration = Q1b_f()
-    #configuration = Q2b()
-    #configuration = Q2c()
-    #configuration = Q3a()
-    #configuration = Q4a()
+    configuration = Q1a()
+    configuration = Q1b_f()
+    configuration = Q2b()
+    configuration = Q2c()
+    configuration = Q3a()
+    configuration = Q4a()
     configuration = Q5a()
-    # configuration = Q5b()
-    # configuration = Q5c1()
-    # configuration = Q5c2() 
-    # configuration = Q5d()
-    # configuration = Q6()
+    configuration = Q5b()
+    configuration = Q5c1()
+    configuration = Q5c2() 
+    configuration = Q5d()
+    configuration = Q6()
     configuration.display()     
          
 # Calls the main function
