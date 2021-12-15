@@ -74,8 +74,23 @@ class Section:
 
     # Checks if the opening can be created for the object x
     def canCreateOpening(self, x):
-        # A compléter en remplaçant pass par votre code
-        pass      
+        if self.getParameter('position')[0] + self.getParameter('width') < x.getParameter('position')[0] + x.getParameter('width'):
+            #si la position (en x) + la longueur du mur < position + longueur de l'ouverture : ce n'est pas possible 
+            return False
+        elif x.getParameter('position')[0] + x.getParameter('width') < self.getParameter('position')[0]:
+            #si la position (en x)  + la longueur de la fenêtre < la position de départ du mur : ce n'est pas possible non plus (on ne peut pas faire d'ouverture dans le vide)
+            return False
+        elif self.getParameter('position')[2] + self.getParameter('height') < x.getParameter('position')[2] + x.getParameter('height'):
+            #si la position (en z) + la hauteur du mur < position + hauteur de l'ouverture : ce n'est pas possible 
+            return False
+        elif x.getParameter('position')[2] + x.getParameter('height') < self.getParameter('position')[2]:
+            #si la position (en z)  + la hauteur de la fenêtre < la position de départ du mur : ce n'est pas possible non plus (on ne peut pas faire d'ouverture dans le vide)
+            return False
+        elif self.getParameter('thickness') != x.getParameter('thickness'):
+            #si l'épaisseur du mur est différente de celle de l'ouverture : on ne peut pas la faire 
+            return False
+        else :
+            return True    
         
     # Creates the new sections for the object x
     def createNewSections(self, x):

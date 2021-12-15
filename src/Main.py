@@ -63,7 +63,8 @@ def Q5b():
     section = Section({'width':7, 'height':2.6})
     opening1 = Opening({'position': [2, 0, 0], 'width':0.9, 'height':2.15, 'thickness':0.2, 'color': [0.7, 0.7, 0.7]})
     opening2 = Opening({'position': [4, 0, 1.2], 'width':1.25, 'height':1, 'thickness':0.2, 'color': [0.7, 0.7, 0.7]}) 
-    opening3 = Opening({'position': [4, 0, 1.7], 'width':1.25, 'height':1, 'thickness':0.2, 'color': [0.7, 0.7, 0.7]}) 
+    opening3 = Opening({'position': [4, 0, 1.7], 'width':1.25, 'height':1, 'thickness':0.2, 'color': [0.7, 0.7, 0.7]})
+    #opening 3 impossible car la position en z + la hauteur de l'ouverture > la hauteur du mur => 1+1.7=2.7>2.6 (pas d'ouverture dans le vide)
     
     print(section.canCreateOpening(opening1))
     print(section.canCreateOpening(opening2))    
@@ -98,17 +99,17 @@ def main():
     # Enlever un des commentaires pour la question traitée
     
     configuration = Q1a()
-    configuration = Q1b_f()
-    configuration = Q2b()
-    configuration = Q2c()
-    configuration = Q3a()
-    configuration = Q4a()
-    configuration = Q5a()
-    configuration = Q5b()
-    configuration = Q5c1()
-    configuration = Q5c2() 
-    configuration = Q5d()
-    configuration = Q6()
+    #configuration = Q1b_f()
+    #configuration = Q2b()
+    #configuration = Q2c()
+    #configuration = Q3a()
+    #configuration = Q4a()
+    #configuration = Q5a()
+    #configuration = Q5b()
+    #configuration = Q5c1()
+    #configuration = Q5c2() 
+    #configuration = Q5d()
+    #configuration = Q6()
     configuration.display()     
          
 # Calls the main function
